@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ideas
+{% endblock %}
+
+{% block main %}
+    <p> Ideas </p>
+    <table action="/ideas">
+         <thead>
+            <tr>
+                <th>Idea</th>
+                <th>Stage</th>
+                <th>Upvotes</th>
+                <th>Downvotes</th>
+                <th>Submission Time</th>
+            </tr>
+        </thead>
+        <form method="POST">
+            <tbody>
+                <!-- Add ideas to Table -->
+                {% for idea in ideas %}
+                    <tr>
+                        <td><select name="title"><option>{{ idea.title }}</option></select></td>
+                        <td name="stage">{{ idea.stage }}</td>
+                        <td name="upvotes">{{ idea.upvotes }}</td>
+                        <td name="downvotes">{{ idea.downvotes }}</td>
+                        <td name="time">{{ idea.time }}</td>
+                        <td><button name = {{ idea.idea_id}} class="btn" style="background-color: #ffecb8" type="submit">Button</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </form>
+            <tbody>
+                <!-- Add ideas to Table -->
+                {% for idea in ideas %}
+                    <tr>
+                        <td name="{{ idea.title }}">{{ idea.title }}</td>
+                        <td name="stage">{{ idea.stage }}</td>
+                        <td name="upvotes">{{ idea.upvotes }}</td>
+                        <td name="downvotes">{{ idea.downvotes }}</td>
+                        <td name="time">{{ idea.time }}</td>
+                        <td><a class="btn btn-primary" href="/vote">Upvote</a></td>
+                        <td><a class="btn btn-primary" href="/downvote">Downvote</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+{% endblock %}
